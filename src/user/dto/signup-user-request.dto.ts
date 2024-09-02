@@ -1,4 +1,4 @@
-export class SaveUserRequestDto {
+export class SignUpUserRequestDto {
   username: string;
   password: string;
 }

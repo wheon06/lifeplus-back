@@ -1,9 +1,9 @@
-import { ConflictException, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { User } from './entities/user.entity';
 import { Repository } from 'sequelize-typescript';
-import { SaveUserRequestDto } from './dto/save-user-request.dto';
 import * as bcrypt from 'bcrypt';
+import { SignUpUserRequestDto } from './dto/signup-user-request.dto';
+import { ConflictException, Injectable } from '@nestjs/common';
 
 @Injectable()
 export class UserService {
@@ -12,24 +12,16 @@ export class UserService {
     private readonly userRepository: Repository<User>,
   ) {}
 
-  async save(reqDto: SaveUserRequestDto) {
+  async save(reqDto: SignUpUserRequestDto) {
     const existUser = await this.findByUsername(reqDto.username);
+    if (existUser) throw new ConflictException('User already exists');
 
-    if (existUser) {
-      throw new ConflictException('Username already exists');
-    }
-
-    reqDto.password = await this.encryptPassword(reqDto.password);
+    reqDto.password = await bcrypt.hash(reqDto.password, 10);
 
     return this.userRepository.create(reqDto);
   }
 
-  private async findByUsername(username: string) {
+  async findByUsername(username: string) {
     return this.userRepository.findOne({ where: { username: username } });
-  }
-
-  private async encryptPassword(password: string): Promise<string> {
-    const encryptedPassword = await bcrypt.hash(password, 10);
-    return encryptedPassword;
   }
 }

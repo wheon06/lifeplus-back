@@ -1,8 +1,9 @@
-import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { SequelizeModule } from '@nestjs/sequelize'; // Add this import statement
+import { Module } from '@nestjs/common';
+import { SequelizeModule } from '@nestjs/sequelize';
 import { UserModule } from './user/user.module';
 import { User } from './user/entities/user.entity';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { User } from './user/entities/user.entity';
       timezone: '+09:00',
     }),
     UserModule,
+    AuthModule,
   ],
   controllers: [],
   providers: [],
