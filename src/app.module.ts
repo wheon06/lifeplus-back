@@ -4,6 +4,8 @@ import { SequelizeModule } from '@nestjs/sequelize';
 import { UserModule } from './user/user.module';
 import { User } from './user/entities/user.entity';
 import { AuthModule } from './auth/auth.module';
+import { HealthModule } from './health/health.module';
+import { Health } from './health/entities/health.entity';
 
 @Module({
   imports: [
@@ -15,13 +17,14 @@ import { AuthModule } from './auth/auth.module';
       username: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
-      models: [User],
+      models: [User, Health],
       autoLoadModels: true,
       synchronize: true,
       timezone: '+09:00',
     }),
     UserModule,
     AuthModule,
+    HealthModule,
   ],
   controllers: [],
   providers: [],
