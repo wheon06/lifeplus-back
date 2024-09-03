@@ -1,7 +1,7 @@
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule, JwtService } from '@nestjs/jwt';
-import { UserService } from '../user/user.service';
-import { AuthService } from './auth.service';
+import { UserService } from '../../user/user.service';
+import { AuthService } from '../auth.service';
 import { Test, TestingModule } from '@nestjs/testing';
 import { SignInUserRequestDto } from 'src/user/dto/signin-user-request.dto';
 import { UnauthorizedException } from '@nestjs/common';

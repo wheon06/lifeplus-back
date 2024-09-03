@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { UserService } from './user.service';
-import { SignUpUserRequestDto } from './dto/signup-user-request.dto';
+import { UserService } from '../user.service';
+import { SignUpUserRequestDto } from '../dto/signup-user-request.dto';
 import { ConflictException } from '@nestjs/common';
 
 describe('UserService', () => {

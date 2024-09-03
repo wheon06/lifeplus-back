@@ -1,10 +1,10 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { AuthService } from './auth.service';
+import { AuthService } from '../auth.service';
 import { PassportModule } from '@nestjs/passport';
-import { AuthController } from './auth.controller';
+import { AuthController } from '../auth.controller';
 import { JwtModule, JwtService } from '@nestjs/jwt';
-import { UserService } from '../user/user.service';
-import { SignUpUserRequestDto } from '../user/dto/signup-user-request.dto';
+import { UserService } from '../../user/user.service';
+import { SignUpUserRequestDto } from '../../user/dto/signup-user-request.dto';
 
 describe('AuthController', () => {
   let authController: AuthController;
