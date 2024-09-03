@@ -8,7 +8,6 @@ import { SignUpUserRequestDto } from '../user/dto/signup-user-request.dto';
 
 describe('AuthController', () => {
   let authController: AuthController;
-  let authService: AuthService;
 
   let userRepository: any;
 
@@ -39,7 +38,6 @@ describe('AuthController', () => {
     }).compile();
 
     authController = app.get<AuthController>(AuthController);
-    authService = app.get<AuthService>(AuthService);
   });
 
   it('should be defined', () => {
