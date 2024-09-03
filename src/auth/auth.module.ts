@@ -4,17 +4,35 @@ import { AuthController } from './auth.controller';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { UserModule } from 'src/user/user.module';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 
 @Module({
   imports: [
+    ConfigModule.forRoot(),
     PassportModule.register({ defaultStrategy: 'jwt' }),
-    JwtModule.register({
-      secret: process.env.JWT_ACCESS_TOKEN_SECRET,
-      signOptions: { expiresIn: process.env.JWT_ACCESS_TOKEN_EXPIRATION_TIME },
+    JwtModule.registerAsync({
+      imports: [ConfigModule],
+      useFactory: async (configService: ConfigService) => ({
+        secret: configService.get<string>('JWT_ACCESS_TOKEN_SECRET'),
+        signOptions: {
+          expiresIn: configService.get<string>(
+            'JWT_ACCESS_TOKEN_EXPIRATION_TIME',
+          ),
+        },
+      }),
+      inject: [ConfigService],
     }),
-    JwtModule.register({
-      secret: process.env.JWT_REFRESH_TOKEN_SECRET,
-      signOptions: { expiresIn: process.env.JWT_REFRESH_TOKEN_EXPIRATION_TIME },
+    JwtModule.registerAsync({
+      imports: [ConfigModule],
+      useFactory: async (configService: ConfigService) => ({
+        secret: configService.get<string>('JWT_REFRESH_TOKEN_SECRET'),
+        signOptions: {
+          expiresIn: configService.get<string>(
+            'JWT_REFRESH_TOKEN_EXPIRATION_TIME',
+          ),
+        },
+      }),
+      inject: [ConfigService],
     }),
     UserModule,
   ],
