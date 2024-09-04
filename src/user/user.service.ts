@@ -21,6 +21,10 @@ export class UserService {
     return this.userRepository.create(reqDto);
   }
 
+  async findById(id: number) {
+    return this.userRepository.findOne({ where: { id: id } });
+  }
+
   async findByUsername(username: string) {
     return this.userRepository.findOne({ where: { username: username } });
   }
