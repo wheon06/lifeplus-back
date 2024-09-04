@@ -6,6 +6,8 @@ import { User } from './user/entities/user.entity';
 import { AuthModule } from './auth/auth.module';
 import { HealthModule } from './health/health.module';
 import { Health } from './health/entities/health.entity';
+import { UserDetailModule } from './user-detail/user-detail.module';
+import { UserDetail } from './user-detail/entities/user-detail.entity';
 
 @Module({
   imports: [
@@ -17,7 +19,7 @@ import { Health } from './health/entities/health.entity';
       username: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
-      models: [User, Health],
+      models: [User, UserDetail, Health],
       autoLoadModels: true,
       synchronize: true,
       timezone: '+09:00',
@@ -25,6 +27,7 @@ import { Health } from './health/entities/health.entity';
     UserModule,
     AuthModule,
     HealthModule,
+    UserDetailModule,
   ],
   controllers: [],
   providers: [],

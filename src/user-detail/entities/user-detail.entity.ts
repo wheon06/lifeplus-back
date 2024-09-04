@@ -1,6 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
 import {
-  AutoIncrement,
   BelongsTo,
   Column,
   ForeignKey,
@@ -11,33 +10,32 @@ import {
 import { User } from 'src/user/entities/user.entity';
 
 @Table
-export class Health extends Model<Health> {
+export class UserDetail extends Model<UserDetail> {
   @ApiProperty()
   @PrimaryKey
-  @AutoIncrement
+  @ForeignKey(() => User)
   @Column
   id: number;
 
   @ApiProperty()
-  @Column({ allowNull: true })
-  heartRate: number;
-
-  @ApiProperty()
-  @Column({ allowNull: true })
-  temperature: number;
-
-  @ApiProperty()
-  @Column({ allowNull: true })
-  oxygenSaturation: number;
-
-  @ApiProperty()
-  @Column({ allowNull: true })
-  stress: number;
-
-  @ApiProperty()
-  @ForeignKey(() => User)
   @Column({ allowNull: false })
-  userId: number;
+  name: string;
+
+  @ApiProperty()
+  @Column({ allowNull: false })
+  height: string;
+
+  @ApiProperty()
+  @Column({ allowNull: false })
+  weight: string;
+
+  @ApiProperty()
+  @Column({ allowNull: false })
+  email: string;
+
+  @ApiProperty()
+  @Column({ allowNull: false })
+  mobile: string;
 
   @BelongsTo(() => User)
   user: User;
@@ -49,8 +47,4 @@ export class Health extends Model<Health> {
   @ApiProperty()
   @Column({ allowNull: false })
   updatedAt: Date;
-
-  @ApiProperty()
-  @Column({ allowNull: true })
-  deletedAt: Date;
 }
