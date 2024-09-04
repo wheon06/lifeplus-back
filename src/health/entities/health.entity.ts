@@ -3,6 +3,7 @@ import {
   AutoIncrement,
   BelongsTo,
   Column,
+  DataType,
   ForeignKey,
   Model,
   PrimaryKey,
@@ -19,19 +20,19 @@ export class Health extends Model<Health> {
   id: number;
 
   @ApiProperty()
-  @Column({ allowNull: true })
+  @Column({ allowNull: true, type: DataType.FLOAT })
   heartRate: number;
 
   @ApiProperty()
-  @Column({ allowNull: true })
+  @Column({ allowNull: true, type: DataType.FLOAT })
   temperature: number;
 
   @ApiProperty()
-  @Column({ allowNull: true })
+  @Column({ allowNull: true, type: DataType.FLOAT })
   oxygenSaturation: number;
 
   @ApiProperty()
-  @Column({ allowNull: true })
+  @Column({ allowNull: true, type: DataType.FLOAT })
   stress: number;
 
   @ApiProperty()

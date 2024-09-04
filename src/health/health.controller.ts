@@ -39,4 +39,17 @@ export class HealthController {
   async findLast(@Param('id') userId: number) {
     return await this.healthService.findByOrderByCreatedAtDesc(userId);
   }
+
+  @ApiTags('건강정보 API')
+  @ApiOperation({
+    summary: '측정 기록 조회 API',
+    description: 'id는 유저 아이디, 최근 8건의 측정 기록 조회',
+  })
+  @ApiHeader({ name: 'Authorization', description: 'Bearer [accessToken]' })
+  @ApiOkResponse({ type: [Health] })
+  @UseGuards(AuthGuard())
+  @Get('history/:id')
+  async findHealthHistory(@Param('id') userId: number) {
+    return await this.healthService.findHealthHistory(userId);
+  }
 }

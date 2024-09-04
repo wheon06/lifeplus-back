@@ -20,4 +20,11 @@ export class HealthService {
       order: [['createdAt', 'DESC']],
     });
   }
+  async findHealthHistory(userId: number) {
+    return await this.healthRepository.findAll({
+      where: { userId: userId },
+      order: [['createdAt', 'DESC']],
+      limit: 8,
+    });
+  }
 }
