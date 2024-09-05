@@ -3,7 +3,7 @@ import { User } from './entities/user.entity';
 import { Repository } from 'sequelize-typescript';
 import * as bcrypt from 'bcrypt';
 import { SignUpUserRequestDto } from './dto/signup-user-request.dto';
-import { ConflictException, Injectable } from '@nestjs/common';
+import { ConflictException, HttpStatus, Injectable } from '@nestjs/common';
 
 @Injectable()
 export class UserService {
@@ -13,12 +13,17 @@ export class UserService {
   ) {}
 
   async save(reqDto: SignUpUserRequestDto) {
-    const existUser = await this.findByUsername(reqDto.username);
-    if (existUser) throw new ConflictException('User already exists');
+    this.checkExistUser(reqDto.username);
 
     reqDto.password = await bcrypt.hash(reqDto.password, 10);
 
     return this.userRepository.create(reqDto);
+  }
+
+  async checkExistUser(username: string) {
+    const existUser = await this.findByUsername(username);
+    if (existUser) throw new ConflictException('User already exists');
+    return HttpStatus.OK;
   }
 
   async findById(id: number) {
