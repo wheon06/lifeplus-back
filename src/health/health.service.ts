@@ -14,16 +14,16 @@ export class HealthService {
     return await this.healthRepository.create(reqDto);
   }
 
-  async findByOrderByCreatedAtDesc(userId: number) {
+  async findByOrderByCreatedAtAsc(userId: number) {
     return await this.healthRepository.findOne({
       where: { userId: userId },
-      order: [['createdAt', 'DESC']],
+      order: [['createdAt', 'ASC']],
     });
   }
   async findHealthHistory(userId: number) {
     return await this.healthRepository.findAll({
       where: { userId: userId },
-      order: [['createdAt', 'DESC']],
+      order: [['createdAt', 'ASC']],
       limit: 8,
     });
   }

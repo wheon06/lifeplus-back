@@ -47,7 +47,7 @@ export class HealthController {
   @UseGuards(AuthGuard())
   @Get(':id')
   async findLast(@Param('id') userId: number) {
-    return await this.healthService.findByOrderByCreatedAtDesc(userId);
+    return await this.healthService.findByOrderByCreatedAtAsc(userId);
   }
 
   @ApiTags('건강정보 API')
