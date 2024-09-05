@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Logger,
+  Param,
+  Post,
+  UseGuards,
+} from '@nestjs/common';
 import { HealthService } from './health.service';
 import { SaveHealthRequestDto } from './dto/save-health-request.dto';
 import { AuthGuard } from '@nestjs/passport';
@@ -14,6 +22,8 @@ import { Health } from './entities/health.entity';
 @Controller('health')
 export class HealthController {
   constructor(private readonly healthService: HealthService) {}
+
+  private readonly logger = new Logger(HealthController.name);
 
   @ApiTags('건강정보 API')
   @ApiOperation({

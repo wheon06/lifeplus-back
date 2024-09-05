@@ -3,6 +3,7 @@ import {
   Body,
   Controller,
   Get,
+  Logger,
   NotFoundException,
   Param,
   Post,
@@ -25,6 +26,8 @@ export class UserDetailController {
     private readonly userService: UserService,
   ) {}
 
+  private readonly logger = new Logger(UserDetailController.name);
+
   @Post('user/detail')
   @ApiTags('유저 API')
   @ApiOperation({
@@ -36,6 +39,7 @@ export class UserDetailController {
   async save(@Body() reqDto: SaveUserDetailRequestDto) {
     const existUser = this.userService.findById(reqDto.id);
     if (!existUser) throw new NotFoundException('User not exists');
+    this.logger.log(reqDto.name + ' 님이 가입하였습니다.');
     return await this.userDetailService.save(reqDto);
   }
 
