@@ -6,6 +6,8 @@ export class SaveUserDetailRequestDto {
   @ApiProperty()
   name: string;
   @ApiProperty()
+  birthday: Date;
+  @ApiProperty()
   height: string;
   @ApiProperty()
   weight: string;

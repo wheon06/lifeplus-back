@@ -23,6 +23,10 @@ export class UserDetail extends Model<UserDetail> {
 
   @ApiProperty()
   @Column({ allowNull: false })
+  birthday: Date;
+
+  @ApiProperty()
+  @Column({ allowNull: false })
   height: string;
 
   @ApiProperty()
