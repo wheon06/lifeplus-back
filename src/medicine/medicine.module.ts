@@ -4,10 +4,11 @@ import { MedicineController } from './medicine.controller';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { Health } from '../health/entities/health.entity';
 import { PassportModule } from '@nestjs/passport';
+import { Medicine } from './entities/medicine.entity';
 
 @Module({
   imports: [
-    SequelizeModule.forFeature([Health]),
+    SequelizeModule.forFeature([Medicine]),
     PassportModule.register({ defaultStrategy: 'jwt' }),
   ],
   controllers: [MedicineController],

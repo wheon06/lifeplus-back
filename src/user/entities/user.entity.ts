@@ -8,6 +8,7 @@ import {
   Table,
 } from 'sequelize-typescript';
 import { Health } from 'src/health/entities/health.entity';
+import { Medicine } from '../../medicine/entities/medicine.entity';
 
 @Table({ paranoid: true })
 export class User extends Model<User> {
@@ -27,6 +28,9 @@ export class User extends Model<User> {
 
   @HasMany(() => Health)
   healthList: Health[];
+
+  @HasMany(() => Medicine)
+  medicineList: Medicine[];
 
   @ApiProperty()
   @Column({ allowNull: false })
