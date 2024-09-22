@@ -21,10 +21,19 @@ export class Medicine extends Model<Medicine> {
   breakfast: string;
 
   @Column({ allowNull: true })
+  checkedBreakfast: boolean;
+
+  @Column({ allowNull: true })
   lunch: string;
 
   @Column({ allowNull: true })
+  checkedLunch: boolean;
+
+  @Column({ allowNull: true })
   dinner: string;
+
+  @Column({ allowNull: true })
+  checkedDinner: boolean;
 
   @Column({ allowNull: false })
   date: string;

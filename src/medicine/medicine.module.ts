@@ -2,7 +2,6 @@ import { Module } from '@nestjs/common';
 import { MedicineService } from './medicine.service';
 import { MedicineController } from './medicine.controller';
 import { SequelizeModule } from '@nestjs/sequelize';
-import { Health } from '../health/entities/health.entity';
 import { PassportModule } from '@nestjs/passport';
 import { Medicine } from './entities/medicine.entity';
 
