@@ -8,6 +8,7 @@ import { HealthModule } from './health/health.module';
 import { Health } from './health/entities/health.entity';
 import { UserDetailModule } from './user-detail/user-detail.module';
 import { UserDetail } from './user-detail/entities/user-detail.entity';
+import { MedicineModule } from './medicine/medicine.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { UserDetail } from './user-detail/entities/user-detail.entity';
     AuthModule,
     HealthModule,
     UserDetailModule,
+    MedicineModule,
   ],
   controllers: [],
   providers: [],

@@ -16,7 +16,7 @@ import {
 } from '@nestjs/swagger';
 import { SignInUserResponseDto } from 'src/user/dto/signin-user-response.dto';
 import { User } from 'src/user/entities/user.entity';
-import RefreshAccessTokenResponseDto from 'src/dto/refresh-access-token-response.dto';
+import RefreshAccessTokenResponseDto from 'src/auth/dto/refresh-access-token-response.dto';
 
 @Controller()
 export class AuthController {

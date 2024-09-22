@@ -20,6 +20,7 @@ export class HealthService {
       order: [['createdAt', 'ASC']],
     });
   }
+
   async findHealthHistory(userId: number) {
     return await this.healthRepository.findAll({
       where: { userId: userId },
