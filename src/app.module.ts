@@ -9,6 +9,7 @@ import { Health } from './health/entities/health.entity';
 import { UserDetailModule } from './user-detail/user-detail.module';
 import { UserDetail } from './user-detail/entities/user-detail.entity';
 import { MedicineModule } from './medicine/medicine.module';
+import { Medicine } from './medicine/entities/medicine.entity';
 
 @Module({
   imports: [
@@ -20,7 +21,7 @@ import { MedicineModule } from './medicine/medicine.module';
       username: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
-      models: [User, UserDetail, Health],
+      models: [User, UserDetail, Health, Medicine],
       autoLoadModels: true,
       synchronize: true,
       timezone: '+09:00',
