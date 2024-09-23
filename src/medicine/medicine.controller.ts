@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Patch,
+  Post,
+  Query,
+} from '@nestjs/common';
 import { MedicineService } from './medicine.service';
 import { SaveMedicineRequestDto } from './dto/save-medicine-request.dto';
 
@@ -9,6 +17,15 @@ export class MedicineController {
   @Post('save')
   async save(@Body() reqDto: SaveMedicineRequestDto) {
     return await this.medicineService.save(reqDto);
+  }
+
+  @Patch(':userId')
+  async updateIsChecked(@Param('userId') userId: number, @Query() query: any) {
+    return await this.medicineService.updateIsChecked(
+      userId,
+      query.index,
+      query.value,
+    );
   }
 
   @Get(':id')
