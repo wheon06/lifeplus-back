@@ -25,6 +25,7 @@ export class MedicineController {
       userId,
       query.index,
       query.value,
+      query.date,
     );
   }
 
